@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- BOOTSTRAP -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <!-- {% load static %} -->
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'app_name/css/style.css' %}"> -->
+    <title>Sign in</title>
+</head>
+<body>
+    <h1>New Registration:</h1>
+        {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if message.tags %} class='{{message.tags}}' {% endif %}>
+                    {{message}}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action ='user/register' method = 'POST'>
+        {% csrf_token %}
+        First name: <input type='text' name='first_name'><br>
+        Last name: <input type='text' name='last_name'><br>
+        Birthday: <input type='date' name='birthday'><br>
+        Email: <input type='email' name='email'><br>
+        Password: <input type='password' name='password'><br>
+        Confirm Password: <input type='password' name='confirm_password'><br>
+        <input type='Submit'>
+    </form>
+
+    <h1>Log in:</h1>
+    <form action ='user/login' method = 'POST'>
+        {% csrf_token %}
+        Email: <input type='email' name='email'><br>
+        Password: <input type='password' name='password'><br>
+        <input type='Submit'>
+    </form>
+</body>
+
+</html>
